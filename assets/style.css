@@ -16,7 +16,7 @@ body {
 	height: 100vh;
 	background: linear-gradient(to bottom,
 			#009788 20%,
-			#dadada 20%);
+			#dadbd5 20%);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -54,12 +54,18 @@ main .search {
 }
 
 main .contacts {
-	background-color: lightgreen;
+	background-color: white;
 	grid-column: 1 / 2;
 	grid-row: 4 / -1;
 }
 
-main .selected-contact {
+main .contact {
+	display: flex;
+	gap: 0.5rem;
+	padding: 0.5rem 1rem;
+}
+
+main .chat-contact {
 	background-color: lightsalmon;
 	grid-column: 2 / 3;
 	grid-row: 1 / span 1;
@@ -102,8 +108,30 @@ main .msg-input {
 	margin-bottom: 0.5rem;
 }
 
-.data {
+.chat .date {
 	font-size: 0.65rem;
 	color: #aaaaaa;
 	text-align: end;
+}
+
+.contacts .avatar {
+	width: 100px;
+	height: 100px;
+}
+
+.contacts img {
+	width: 100%;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+.contacts .name {
+	font-size: 1.25rem;
+	font-weight: 500;
+	color: black;
+}
+
+.contacts .date {
+	font-size: 0.8rem;
+	color: #aaaaaa;
 }
