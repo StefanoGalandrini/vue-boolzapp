@@ -76,7 +76,7 @@ main .contact {
 }
 
 .contact img {
-	width: 80px;
+	width: 65px;
 	aspect-ratio: 1 / 1;
 	object-fit: cover;
 	border-radius: 50%;
@@ -97,7 +97,7 @@ main .contact {
 }
 
 .contact .name {
-	font-size: 1.25rem;
+	font-size: 1.15rem;
 	font-weight: 500;
 	color: black;
 	/* line-height: 1.5rem; */
@@ -121,14 +121,11 @@ main .chat {
 	grid-column: 2 / 3;
 	grid-row: 2 / -2;
 	padding: 3rem;
-	display: grid;
-	align-content: start;
 }
 
-main .msg-input {
-	background-color: lightseagreen;
-	grid-column: 2 / 3;
-	grid-row: -2 / -1;
+.chat .conversation {
+	display: grid;
+	align-content: start;
 }
 
 .sent {
@@ -157,4 +154,10 @@ main .msg-input {
 	font-size: 0.65rem;
 	color: #aaaaaa;
 	text-align: end;
+}
+
+main .msg-input {
+	background-color: lightseagreen;
+	grid-column: 2 / 3;
+	grid-row: -2 / -1;
 }

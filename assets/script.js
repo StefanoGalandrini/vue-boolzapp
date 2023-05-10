@@ -1,7 +1,7 @@
 const app = Vue.createApp({
 	data() {
 		return {
-			activeIndex: null,
+			activeIndex: 0,
 			contacts: [
 				{
 					name: "Michele",
@@ -174,7 +174,7 @@ const app = Vue.createApp({
 	},
 
 	methods: {
-		toggleActiveContact(i) {
+		chooseActiveContact(i) {
 			this.activeIndex = i;
 		},
 	},

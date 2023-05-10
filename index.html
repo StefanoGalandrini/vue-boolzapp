@@ -32,7 +32,7 @@
 			<div class="contacts">
 				<div v-for="(contact, index) in contacts" :key="contact.name"
 					class="contact" :class="{active: index === activeIndex}"
-					@click="toggleActiveContact(index)">
+					@click="chooseActiveContact(index)">
 					<img :src="contact.avatar" :alt="contact.name">
 					<div class="info">
 						<div class="userdata">
@@ -43,9 +43,6 @@
 						<p class="date">Ultimo messaggio inviato</p>
 					</div>
 				</div>
-
-
-
 			</div>
 
 			<div class="chat-contact">
@@ -53,26 +50,13 @@
 			</div>
 
 			<div class="chat">
-				<div class="sent">
-					<p>aaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa</p>
-					<p class="date">12/5/2023</p>
+				<div v-for="msg in contacts[activeIndex].messages"
+					class="conversation">
+					<div :class="msg.status">
+						<p>{{msg.message}}</p>
+						<p class="date">{{msg.date}}</p>
+					</div>
 				</div>
-
-				<div class="received">
-					<p>zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</p>
-					<p class="date">12/5/2023</p>
-				</div>
-
-				<div class="sent">
-					<p>aaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-					<p class="date">12/5/2023</p>
-				</div>
-
-				<div class="received">
-					<p>zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</p>
-					<p class="date">12/5/2023</p>
-				</div>
-
 			</div>
 
 			<div class="msg-input">
