@@ -66,13 +66,44 @@ main .selected-contact {
 }
 
 main .chat {
-	background-color: lightpink;
+	background-image: url("../img/mine.jpg");
 	grid-column: 2 / 3;
 	grid-row: 2 / -2;
+	padding: 3rem;
+	display: grid;
+	align-content: start;
 }
 
 main .msg-input {
 	background-color: lightseagreen;
 	grid-column: 2 / 3;
 	grid-row: -2 / -1;
+}
+
+.sent {
+	max-width: 70%;
+	overflow: hidden;
+	background-color: #d5f9bb;
+	padding: 0.5rem 1rem;
+	border-radius: 10px;
+	height: min-content;
+	justify-self: end;
+	margin-bottom: 0.5rem;
+}
+
+.received {
+	max-width: 70%;
+	overflow: hidden;
+	background-color: #ffffff;
+	padding: 0.5rem 1rem;
+	border-radius: 10px;
+	height: min-content;
+	justify-self: start;
+	margin-bottom: 0.5rem;
+}
+
+.data {
+	font-size: 0.65rem;
+	color: #aaaaaa;
+	text-align: end;
 }
