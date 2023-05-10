@@ -39,15 +39,67 @@ main #container {
 }
 
 main .user {
-	background-color: maroon;
+	background-color: #eaeaea;
 	grid-column: 1 / 2;
 	grid-row: 1 / span 1;
+	display: grid;
+	align-self: center;
+}
+
+.user .icon {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1rem;
+	padding: 0.5rem;
+}
+
+.user .avatar {
+	width: 65px;
+	height: 65px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.user img {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	object-position: center center;
+}
+
+.user .info {
+	width: calc(100% - 80px - 1rem);
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.user .name {
+	font-size: 1rem;
+	font-weight: 500;
+	color: black;
+}
+
+.user .icon {
+	font-size: 1.3rem;
+	font-weight: 300;
+	color: var(--font-grey);
+}
+
+.user i {
+	width: 1rem;
+	text-align: center;
+	margin-left: 1.5rem;
 }
 
 main .notification {
 	background-color: #8fdbfd;
 	grid-column: 1 / 2;
 	grid-row: 2 / span 1;
+	display: flex;
+	align-items: center;
 }
 
 .notification .icon {
@@ -59,7 +111,7 @@ main .notification {
 }
 
 .notification .bell {
-	width: 65px;
+	width: 55px;
 	aspect-ratio: 1 / 1;
 	border-radius: 50%;
 	background-color: white;
@@ -182,9 +234,61 @@ main .contact {
 }
 
 main .chat-contact {
-	background-color: lightsalmon;
+	background-color: #eaeaea;
 	grid-column: 2 / 3;
 	grid-row: 1 / span 1;
+	border-left: 1px solid black;
+}
+
+.chat-contact .contact {
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 0;
+	padding-inline: 1rem;
+}
+
+.chat-contact .avatar {
+	width: 65px;
+	height: 65px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.chat-contact img {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	object-position: center center;
+}
+
+.chat-contact .info {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.chat-contact .name {
+	font-size: 1rem;
+	font-weight: 500;
+	color: black;
+}
+
+.chat-contact .icons {
+	font-size: 1.3rem;
+	font-weight: 300;
+	color: var(--font-grey);
+}
+
+.chat-contact i {
+	width: 1rem;
+	text-align: center;
+	margin-left: 1.5rem;
+}
+
+.chat-contact .date {
+	font-size: 0.9rem;
 }
 
 main .chat {
@@ -192,6 +296,7 @@ main .chat {
 	grid-column: 2 / 3;
 	grid-row: 2 / -2;
 	padding: 3rem;
+	border: 5px solid white;
 }
 
 .chat .conversation {

@@ -3,6 +3,9 @@ const app = Vue.createApp({
 		return {
 			activeIndex: 0,
 			nameContains: "",
+			filteredContacts: [],
+			userAvatar: "img/avatar_stefano.jpg",
+			userName: "Stefano G.",
 			contacts: [
 				{
 					name: "Michele",
@@ -171,8 +174,6 @@ const app = Vue.createApp({
 					],
 				},
 			],
-			filteredContacts: [],
-			// filteredContacts: JSON.parse(JSON.stringify(this.contacts)),
 		};
 	},
 

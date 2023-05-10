@@ -19,7 +19,19 @@
 	<main>
 		<div id="container">
 			<div class="user">
-
+				<div class="icon">
+					<div class="avatar">
+						<img :src="userAvatar" :alt="userName">
+					</div>
+					<div class="info">
+						<span class="name">{{userName}}</span>
+						<div class="icons">
+							<i class="fa-solid fa-circle-notch"></i>
+							<i class="fa-solid fa-message"></i>
+							<i class="fa-solid fa-ellipsis-vertical"></i>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="notification">
 				<div class="icon">
@@ -46,16 +58,14 @@
 			</div>
 
 			<div class="contacts">
-				<div v-for="(contact, index) in filteredContacts"
-					:key="contact.name" class="contact"
-					:class="{active: index === activeIndex}"
+				<div v-for="(contact, index) in filteredContacts" :key="contact.name"
+					class="contact" :class="{active: index === activeIndex}"
 					@click="chooseActiveContact(index)">
 					<img :src="contact.avatar" :alt="contact.name">
 					<div class="info">
 						<div class="userdata">
 							<span class="name">{{contact.name}}</span>
-							<span
-								class="date">{{contact.messages[0].date}}</span>
+							<span class="date">{{contact.messages[0].date}}</span>
 						</div>
 						<p class="date">Ultimo messaggio inviato</p>
 					</div>
@@ -63,12 +73,31 @@
 			</div>
 
 			<div class="chat-contact">
-
+				<div class="contact">
+					<div class="avatar">
+						<img :src="contacts[activeIndex].avatar"
+							:alt="contacts[activeIndex].name">
+					</div>
+					<div class="info">
+						<div class="userdata">
+							<div class="text">
+								<p class="name">{{contacts[activeIndex].name}}</p>
+								<p class="date">`Ultimo accesso oggi alle
+									{{contacts[activeIndex].messages[0].date}}`
+								</p>
+							</div>
+							<div class="icons">
+								<i class="fa-solid fa-magnifying-glass"></i>
+								<i class="fa-solid fa-paperclip"></i>
+								<i class="fa-solid fa-ellipsis-vertical"></i>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<div class="chat">
-				<div v-for="msg in contacts[activeIndex].messages"
-					class="conversation">
+				<div v-for="msg in contacts[activeIndex].messages" class="conversation">
 					<div :class="msg.status">
 						<p>{{msg.message}}</p>
 						<p class="date">{{msg.date}}</p>
