@@ -17,12 +17,62 @@ body {
 	background: linear-gradient(to bottom,
 			#009788 20%,
 			#dadada 20%);
-	display: grid;
-	place-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 main {
 	width: 70%;
 	height: 90%;
-	background-color: gold;
+}
+
+main #container {
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 35% 65%;
+	grid-template-rows: 10% 10% 8% auto 10%;
+}
+
+main .user {
+	background-color: maroon;
+	grid-column: 1 / 2;
+	grid-row: 1 / span 1;
+}
+
+main .new-msg {
+	background-color: lightblue;
+	grid-column: 1 / 2;
+	grid-row: 2 / span 1;
+}
+
+main .search {
+	background-color: grey;
+	grid-column: 1 / 2;
+	grid-row: 3 / span 1;
+}
+
+main .contacts {
+	background-color: lightgreen;
+	grid-column: 1 / 2;
+	grid-row: 4 / -1;
+}
+
+main .selected-contact {
+	background-color: lightsalmon;
+	grid-column: 2 / 3;
+	grid-row: 1 / span 1;
+}
+
+main .chat {
+	background-color: lightpink;
+	grid-column: 2 / 3;
+	grid-row: 2 / -2;
+}
+
+main .msg-input {
+	background-color: lightseagreen;
+	grid-column: 2 / 3;
+	grid-row: -2 / -1;
 }
