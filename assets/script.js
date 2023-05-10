@@ -2,6 +2,7 @@ const app = Vue.createApp({
 	data() {
 		return {
 			activeIndex: 0,
+			nameContains: "",
 			contacts: [
 				{
 					name: "Michele",
@@ -170,6 +171,8 @@ const app = Vue.createApp({
 					],
 				},
 			],
+			filteredContacts: [],
+			// filteredContacts: JSON.parse(JSON.stringify(this.contacts)),
 		};
 	},
 
@@ -177,6 +180,31 @@ const app = Vue.createApp({
 		chooseActiveContact(i) {
 			this.activeIndex = i;
 		},
+		filterContacts() {
+			if (this.nameContains.trim() === "") {
+				this.filteredContacts = JSON.parse(
+					JSON.stringify(this.contacts),
+				);
+				return;
+			}
+
+			this.filteredContacts = this.contacts.filter((contact) =>
+				contact.name
+					.toLowerCase()
+					.includes(this.nameContains.toLowerCase()),
+			);
+		},
+		onChange() {
+			if (this.nameContains === "") {
+				this.filteredContacts = JSON.parse(
+					JSON.stringify(this.contacts),
+				);
+			}
+		},
+	},
+
+	created() {
+		this.filteredContacts = JSON.parse(JSON.stringify(this.contacts));
 	},
 });
 
