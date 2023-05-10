@@ -31,25 +31,19 @@
 
 			<div class="contacts">
 				<div class="contact active">
-					<div class="avatar">
-						<img :src="contacts[0].avatar" alt="">
-					</div>
+					<img :src="contacts[0].avatar" alt="">
 					<div class="info">
-						<p class="name">{{contacts[0].name}}</p>
+						<div class="userdata">
+							<span class="name">{{contacts[0].name}}</span>
+							<span
+								class="date">{{contacts[0].messages[0].date}}</span>
+						</div>
 						<p class="date">Ultimo messaggio inviato</p>
-						<p class="date">{{contacts[0].messages[0].date}}</p>
 					</div>
 				</div>
-				<div class="contact">
-					<div class="avatar">
-						<img :src="contacts[1].avatar" alt="">
-					</div>
-					<div class="info">
-						<p class="name">{{contacts[1].name}}</p>
-						<p class="date">Ultimo messaggio inviato</p>
-						<p class="date">{{contacts[1].messages[1].date}}</p>
-					</div>
-				</div>
+
+
+
 			</div>
 
 			<div class="chat-contact">
@@ -64,17 +58,17 @@
 
 				<div class="received">
 					<p>zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</p>
-					<p class="data">12/5/2023</p>
+					<p class="date">12/5/2023</p>
 				</div>
 
 				<div class="sent">
 					<p>aaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-					<p class="data">12/5/2023</p>
+					<p class="date">12/5/2023</p>
 				</div>
 
 				<div class="received">
 					<p>zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</p>
-					<p class="data">12/5/2023</p>
+					<p class="date">12/5/2023</p>
 				</div>
 
 			</div>
