@@ -239,7 +239,9 @@ const app = Vue.createApp({
 
 		lastMessageDate(contact) {
 			const i = contact.messages.length - 1;
-			return contact.messages[i].date;
+			if (contact.messages[i].status === "received") {
+				return contact.messages[i].date;
+			}
 		},
 
 		lastMessageText(contact) {
