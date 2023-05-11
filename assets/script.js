@@ -239,15 +239,23 @@ const app = Vue.createApp({
 		},
 
 		lastMessageDate(contact) {
-			const i = contact.messages.length - 1;
-			if (contact.messages[i].status === "received") {
+			let i = contact.messages.length - 1;
+			if (contact.messages[i].status === "sent") {
+				i--;
+				return contact.messages[i].date;
+			} else {
 				return contact.messages[i].date;
 			}
 		},
 
 		lastMessageText(contact) {
-			const i = contact.messages.length - 1;
-			return contact.messages[i].message;
+			let i = contact.messages.length - 1;
+			if (contact.messages[i].status === "sent") {
+				i--;
+				return contact.messages[i].message;
+			} else {
+				return contact.messages[i].message;
+			}
 		},
 
 		toggleShowMenu(index) {
@@ -257,9 +265,10 @@ const app = Vue.createApp({
 		},
 
 		deleteMessage(index) {
-			console.log(index);
 			this.filteredContacts[this.activeIndex].messages.splice(index, 1);
 			this.toggleShowMenu(index);
+			this.lastMessageText(this.filteredContacts[this.activeIndex]);
+			this.lastMessageDate(this.filteredContacts[this.activeIndex]);
 		},
 	},
 
