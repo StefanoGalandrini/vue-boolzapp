@@ -24,7 +24,7 @@
 						<img :src="userAvatar" :alt="userName">
 					</div>
 					<div class="info">
-						<span class="name">{{userName}}</span>
+						<p class="name">{{userName}}</p>
 						<div class="icons">
 							<i class="fa-solid fa-circle-notch"></i>
 							<i class="fa-solid fa-message"></i>
@@ -75,15 +75,15 @@
 			<div class="chat-contact">
 				<div class="contact">
 					<div class="avatar">
-						<img :src="contacts[activeIndex].avatar"
-							:alt="contacts[activeIndex].name">
+						<img :src="filteredContacts[activeIndex].avatar"
+							:alt="filteredContacts[activeIndex].name">
 					</div>
 					<div class="info">
 						<div class="userdata">
 							<div class="text">
-								<p class="name">{{contacts[activeIndex].name}}</p>
+								<p class="name">{{filteredContacts[activeIndex].name}}</p>
 								<p class="date">`Ultimo accesso oggi alle
-									{{contacts[activeIndex].messages[0].date}}`
+									{{filteredContacts[activeIndex].messages[0].date}}`
 								</p>
 							</div>
 							<div class="icons">
@@ -97,7 +97,8 @@
 			</div>
 
 			<div class="chat">
-				<div v-for="msg in contacts[activeIndex].messages" class="conversation">
+				<div v-for="msg in filteredContacts[activeIndex].messages"
+					class="conversation">
 					<div :class="msg.status">
 						<p>{{msg.message}}</p>
 						<p class="date">{{msg.date}}</p>

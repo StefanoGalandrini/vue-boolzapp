@@ -3,13 +3,12 @@ const app = Vue.createApp({
 		return {
 			activeIndex: 0,
 			nameContains: "",
-			filteredContacts: [],
 			userAvatar: "img/avatar_stefano.jpg",
 			userName: "Stefano G.",
 			contacts: [
 				{
 					name: "Michele",
-					avatar: "img/avatar_1.jpg",
+					avatar: "./img/avatar_1.jpg",
 					visible: true,
 					messages: [
 						{
@@ -31,7 +30,7 @@ const app = Vue.createApp({
 				},
 				{
 					name: "Fabio",
-					avatar: "img/avatar_2.jpg",
+					avatar: "./img/avatar_2.jpg",
 					visible: true,
 					messages: [
 						{
@@ -54,7 +53,7 @@ const app = Vue.createApp({
 				},
 				{
 					name: "Samuele",
-					avatar: "img/avatar_3.jpg",
+					avatar: "./img/avatar_3.jpg",
 					visible: true,
 					messages: [
 						{
@@ -76,7 +75,7 @@ const app = Vue.createApp({
 				},
 				{
 					name: "Alessandro B.",
-					avatar: "img/avatar_4.jpg",
+					avatar: "./img/avatar_4.jpg",
 					visible: true,
 					messages: [
 						{
@@ -93,7 +92,7 @@ const app = Vue.createApp({
 				},
 				{
 					name: "Alessandro L.",
-					avatar: "img/avatar_5.jpg",
+					avatar: "./img/avatar_5.jpg",
 					visible: true,
 					messages: [
 						{
@@ -110,7 +109,7 @@ const app = Vue.createApp({
 				},
 				{
 					name: "Claudia",
-					avatar: "img/avatar_5.jpg",
+					avatar: "./img/avatar_5.jpg",
 					visible: true,
 					messages: [
 						{
@@ -132,7 +131,7 @@ const app = Vue.createApp({
 				},
 				{
 					name: "Federico",
-					avatar: "img/avatar_7.jpg",
+					avatar: "./img/avatar_7.jpg",
 					visible: true,
 					messages: [
 						{
@@ -151,7 +150,7 @@ const app = Vue.createApp({
 				},
 				{
 					name: "Davide",
-					avatar: "img/avatar_8.jpg",
+					avatar: "./img/avatar_8.jpg",
 					visible: true,
 					messages: [
 						{
@@ -181,31 +180,41 @@ const app = Vue.createApp({
 		chooseActiveContact(i) {
 			this.activeIndex = i;
 		},
+
 		filterContacts() {
 			if (this.nameContains.trim() === "") {
-				this.filteredContacts = JSON.parse(
-					JSON.stringify(this.contacts),
+				this.filteredContacts = this.contacts;
+			} else {
+				this.filteredContacts = this.contacts.filter((contact) =>
+					contact.name
+						.toLowerCase()
+						.includes(this.nameContains.toLowerCase()),
 				);
-				return;
 			}
-
-			this.filteredContacts = this.contacts.filter((contact) =>
-				contact.name
-					.toLowerCase()
-					.includes(this.nameContains.toLowerCase()),
-			);
 		},
+
 		onChange() {
-			if (this.nameContains === "") {
-				this.filteredContacts = JSON.parse(
-					JSON.stringify(this.contacts),
-				);
-			}
+			this.filterContacts();
 		},
 	},
 
-	created() {
-		this.filteredContacts = JSON.parse(JSON.stringify(this.contacts));
+	computed: {
+		// filteredContacts() {
+		// 	return this.contacts.slice();
+
+		// 	// return [...this.originalArray];
+		// },
+		filteredContacts() {
+			if (this.nameContains.trim() === "") {
+				return this.contacts;
+			} else {
+				return this.contacts.filter((contact) =>
+					contact.name
+						.toLowerCase()
+						.includes(this.nameContains.toLowerCase()),
+				);
+			}
+		},
 	},
 });
 

@@ -10,9 +10,9 @@
 
 :root {
 	font-family: 'Poppins', sans-serif;
+	--avatar-dimension: 60px;
 	--font-grey: #909090;
 	--font-lightgrey: #aaaaaa;
-
 }
 
 body {
@@ -27,15 +27,16 @@ body {
 
 main {
 	width: 85%;
-	height: 90%;
+	height: 95%;
+	border: 1px solid white;
 }
 
 main #container {
 	width: 100%;
 	height: 100%;
 	display: grid;
-	grid-template-columns: 40% 60%;
-	grid-template-rows: 10% 10% 7% auto 10%;
+	grid-template-columns: 35% 65%;
+	grid-template-rows: 8vh 8vh 5.5vh auto 8vh;
 }
 
 main .user {
@@ -43,20 +44,22 @@ main .user {
 	grid-column: 1 / 2;
 	grid-row: 1 / span 1;
 	display: grid;
-	align-self: center;
+	align-items: center;
+	border-inline-end: 2px solid var(--font-grey);
 }
 
 .user .icon {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: space-between;
 	align-items: center;
-	gap: 1rem;
-	padding: 0.5rem;
+	padding: 0 1rem;
+	margin: 0;
 }
 
 .user .avatar {
-	width: 65px;
-	height: 65px;
+	width: var(--avatar-dimension);
+	height: var(--avatar-dimension);
 	border-radius: 50%;
 	overflow: hidden;
 }
@@ -69,9 +72,8 @@ main .user {
 }
 
 .user .info {
-	width: calc(100% - 80px - 1rem);
+	width: calc(100% - var(--avatar-dimension) - 1rem);
 	display: flex;
-	align-items: center;
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
@@ -100,6 +102,7 @@ main .notification {
 	grid-row: 2 / span 1;
 	display: flex;
 	align-items: center;
+	border-inline-end: 2px solid var(--font-grey);
 }
 
 .notification .icon {
@@ -111,7 +114,7 @@ main .notification {
 }
 
 .notification .bell {
-	width: 55px;
+	width: 50px;
 	aspect-ratio: 1 / 1;
 	border-radius: 50%;
 	background-color: white;
@@ -151,6 +154,7 @@ main .search {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-inline-end: 2px solid var(--font-grey);
 }
 
 .search .container {
@@ -183,10 +187,11 @@ main .contacts {
 	grid-column: 1 / 2;
 	grid-row: 4 / -1;
 	overflow-y: scroll;
+	border-inline-end: 2px solid var(--font-grey);
 }
 
 main .contacts .active {
-	background-color: #dddddd;
+	background-color: #d0d0d0;
 }
 
 main .contact {
@@ -197,17 +202,23 @@ main .contact {
 	padding: 0.5rem 1rem;
 	margin: 5px;
 	cursor: pointer;
+	border-top: 1px solid #f0f0f0;
+	transition: all 250ms;
+}
+
+main .contact:hover {
+	background-color: #f0f0f0;
 }
 
 .contact img {
-	width: 65px;
+	width: var(--avatar-dimension);
 	aspect-ratio: 1 / 1;
 	object-fit: cover;
 	border-radius: 50%;
 }
 
 .contact .info {
-	width: calc(100% - 80px - 1rem);
+	width: calc(100% - var(--avatar-dimension) - 1rem);
 	display: flex;
 	flex-direction: column;
 }
@@ -229,7 +240,7 @@ main .contact {
 .contact .date {
 	font-size: 0.8rem;
 	font-weight: 300;
-	color: var(--font-lightgrey);
+	color: var(--font-grey);
 	white-space: nowrap;
 }
 
@@ -237,21 +248,22 @@ main .chat-contact {
 	background-color: #eaeaea;
 	grid-column: 2 / 3;
 	grid-row: 1 / span 1;
-	border-left: 1px solid black;
+	display: grid;
+	align-items: center;
 }
 
 .chat-contact .contact {
-	height: 100%;
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: space-between;
 	align-items: center;
+	padding: 0 1rem;
 	margin: 0;
-	padding-inline: 1rem;
 }
 
 .chat-contact .avatar {
-	width: 65px;
-	height: 65px;
+	width: var(--avatar-dimension);
+	height: var(--avatar-dimension);
 	border-radius: 50%;
 	overflow: hidden;
 }
@@ -295,8 +307,8 @@ main .chat {
 	background-image: url("../img/mine.jpg");
 	grid-column: 2 / 3;
 	grid-row: 2 / -2;
-	padding: 3rem;
-	border: 5px solid white;
+	padding: 3rem 6rem;
+	overflow-y: auto;
 }
 
 .chat .conversation {
@@ -308,7 +320,7 @@ main .chat {
 	max-width: 70%;
 	overflow: hidden;
 	background-color: #d5f9bb;
-	padding: 0.5rem 1rem;
+	/* padding: 1rem 1.5rem; */
 	border-radius: 10px;
 	height: min-content;
 	justify-self: end;
@@ -319,17 +331,21 @@ main .chat {
 	max-width: 70%;
 	overflow: hidden;
 	background-color: #ffffff;
-	padding: 0.5rem 1rem;
 	border-radius: 10px;
 	height: min-content;
 	justify-self: start;
 	margin-bottom: 0.5rem;
 }
 
+.chat p {
+	padding: 0.5rem 3rem 0.5rem 1rem;
+}
+
 .chat .date {
 	font-size: 0.65rem;
 	color: var(--font-grey);
 	text-align: end;
+	padding: 0 0.75rem .75rem 0;
 }
 
 main .msg-input {
