@@ -5,6 +5,8 @@ const app = Vue.createApp({
 			nameContains: "",
 			userAvatar: "img/avatar_stefano.jpg",
 			userName: "Stefano G.",
+			newMessage: "",
+			answerDelay: 3000,
 			contacts: [
 				{
 					name: "Michele",
@@ -196,14 +198,45 @@ const app = Vue.createApp({
 		onChange() {
 			this.filterContacts();
 		},
+
+		addMessage() {
+			const sentDate = "11/05/2023 15:00:00";
+			if (this.newMessage.trim() !== "") {
+				const newMessage = {
+					date: sentDate,
+					message: this.newMessage,
+					status: "sent",
+				};
+				this.contacts[this.activeIndex].messages.push(newMessage);
+				this.newMessage = "";
+				setTimeout(() => {
+					this.addReply();
+				}, this.answerDelay);
+			}
+		},
+
+		addReply() {
+			const receivedDate = "11/05/2023 15:00:00";
+			const replies = [
+				"Ok!",
+				"Anche no...",
+				"Va bene",
+				"Perfetto!",
+				"Grazie!",
+				"A presto",
+			];
+			const randomIndex = Math.floor(Math.random() * replies.length);
+			const randomReply = replies[randomIndex];
+			const newReply = {
+				date: receivedDate,
+				message: randomReply,
+				status: "received",
+			};
+			this.contacts[this.activeIndex].messages.push(newReply);
+		},
 	},
 
 	computed: {
-		// filteredContacts() {
-		// 	return this.contacts.slice();
-
-		// 	// return [...this.originalArray];
-		// },
 		filteredContacts() {
 			if (this.nameContains.trim() === "") {
 				return this.contacts;

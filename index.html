@@ -12,6 +12,9 @@
 		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
 		crossorigin="anonymous" referrerpolicy="no-referrer">
 	<script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"
+		defer></script>
 	<script src="assets/script.js" defer></script>
 </head>
 
@@ -107,7 +110,16 @@
 			</div>
 
 			<div class="msg-input">
-
+				<div class="container">
+					<div class="icon">
+						<i class="fa-regular fa-face-smile"></i>
+					</div>
+					<input type="text" v-model="newMessage" @keyup.enter="addMessage"
+						placeholder="Scrivi un messaggio">
+					<div class="icon">
+						<i class="fa-solid fa-microphone"></i>
+					</div>
+				</div>
 			</div>
 
 
