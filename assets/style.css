@@ -339,9 +339,43 @@ main .chat {
 	align-content: start;
 }
 
+.chat .bubble {
+	position: relative;
+}
+
+.chat .menu-icon {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+.chat .hidden-menu {
+	max-width: min-content;
+	white-space: nowrap;
+	list-style: none;
+	background-color: rgb(235, 200, 235);
+	border-radius: 10px;
+	position: absolute;
+	top: 25px;
+	right: -15px;
+	padding: 1rem;
+	z-index: 10;
+}
+
+.chat .menu-item {
+	padding: .5rem;
+	font-size: 0.9rem;
+	font-weight: 300;
+	cursor: pointer;
+	transition: all 300ms;
+}
+
+.chat .menu-item:hover {
+	background-color: rgb(207, 154, 207);
+}
+
 .sent {
 	max-width: 70%;
-	overflow: hidden;
 	background-color: #d5f9bb;
 	border-radius: 10px;
 	height: min-content;
@@ -351,7 +385,6 @@ main .chat {
 
 .received {
 	max-width: 70%;
-	overflow: hidden;
 	background-color: #ffffff;
 	border-radius: 10px;
 	height: min-content;

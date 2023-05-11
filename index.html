@@ -100,11 +100,21 @@
 			</div>
 
 			<div class="chat">
-				<div v-for="msg in filteredContacts[activeIndex].messages"
-					class="conversation">
-					<div :class="msg.status">
+				<div v-for="(msg, index) in filteredContacts[activeIndex].messages"
+					:key="msg.message" class="conversation">
+					<div class="bubble" :class="msg.status">
 						<p>{{msg.message}}</p>
 						<p class="date">{{msg.date}}</p>
+
+						<div class="menu-icon" @click="toggleShowMenu(index)">
+							<i class="fa-solid fa-chevron-down"></i>
+						</div>
+
+						<ul v-show="showMenu === index" class="hidden-menu">
+							<li class="menu-item">Info messaggio</li>
+							<li class="menu-item" @click="deleteMessage(index)">Elimina il
+								messaggio</li>
+						</ul>
 					</div>
 				</div>
 			</div>

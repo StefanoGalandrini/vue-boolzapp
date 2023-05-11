@@ -7,6 +7,7 @@ const app = Vue.createApp({
 			userName: "Stefano G.",
 			newMessage: "",
 			answerDelay: 3000,
+			showMenu: null,
 			contacts: [
 				{
 					name: "Michele",
@@ -247,6 +248,18 @@ const app = Vue.createApp({
 		lastMessageText(contact) {
 			const i = contact.messages.length - 1;
 			return contact.messages[i].message;
+		},
+
+		toggleShowMenu(index) {
+			this.showMenu === index
+				? (this.showMenu = null)
+				: (this.showMenu = index);
+		},
+
+		deleteMessage(index) {
+			console.log(index);
+			this.filteredContacts[this.activeIndex].messages.splice(index, 1);
+			this.toggleShowMenu(index);
 		},
 	},
 
