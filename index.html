@@ -11,10 +11,10 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
 		crossorigin="anonymous" referrerpolicy="no-referrer">
-	<script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"
 		defer></script>
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
 	<script src="assets/script.js" defer></script>
 </head>
 
@@ -68,9 +68,9 @@
 					<div class="info">
 						<div class="userdata">
 							<span class="name">{{contact.name}}</span>
-							<span class="date">{{contact.messages[0].date}}</span>
+							<span class="date">{{lastMessageDate(contact)}}</span>
 						</div>
-						<p class="date">Ultimo messaggio inviato</p>
+						<p class="text">{{lastMessageText(contact)}}</p>
 					</div>
 				</div>
 			</div>
@@ -85,8 +85,8 @@
 						<div class="userdata">
 							<div class="text">
 								<p class="name">{{filteredContacts[activeIndex].name}}</p>
-								<p class="date">`Ultimo accesso oggi alle
-									{{filteredContacts[activeIndex].messages[0].date}}`
+								<p class="date">Ultimo accesso: oggi alle
+									{{lastMessageDate(filteredContacts[activeIndex])}}
 								</p>
 							</div>
 							<div class="icons">
@@ -121,13 +121,7 @@
 					</div>
 				</div>
 			</div>
-
-
-
 		</div>
-
-
-
 	</main>
 
 </body>

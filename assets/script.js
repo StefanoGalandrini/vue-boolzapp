@@ -200,7 +200,8 @@ const app = Vue.createApp({
 		},
 
 		addMessage() {
-			const sentDate = "11/05/2023 15:00:00";
+			const now = luxon.DateTime.now().toLocal("Europe");
+			const sentDate = now.toFormat("dd/MM/yyyy HH:mm:ss");
 			if (this.newMessage.trim() !== "") {
 				const newMessage = {
 					date: sentDate,
@@ -216,7 +217,8 @@ const app = Vue.createApp({
 		},
 
 		addReply() {
-			const receivedDate = "11/05/2023 15:00:00";
+			const now = luxon.DateTime.now().toLocal("Europe");
+			const receivedDate = now.toFormat("dd/MM/yyyy HH:mm:ss");
 			const replies = [
 				"Ok!",
 				"Anche no...",
@@ -233,6 +235,16 @@ const app = Vue.createApp({
 				status: "received",
 			};
 			this.contacts[this.activeIndex].messages.push(newReply);
+		},
+
+		lastMessageDate(contact) {
+			const i = contact.messages.length - 1;
+			return contact.messages[i].date;
+		},
+
+		lastMessageText(contact) {
+			const i = contact.messages.length - 1;
+			return contact.messages[i].message;
 		},
 	},
 
