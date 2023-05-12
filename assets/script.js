@@ -209,7 +209,9 @@ const app = Vue.createApp({
 					message: this.newMessage,
 					status: "sent",
 				};
-				this.contacts[this.activeIndex].messages.push(newMessage);
+				this.filteredContacts[this.activeIndex].messages.push(
+					newMessage,
+				);
 				this.newMessage = "";
 				setTimeout(() => {
 					this.addReply();
@@ -235,7 +237,7 @@ const app = Vue.createApp({
 				message: randomReply,
 				status: "received",
 			};
-			this.contacts[this.activeIndex].messages.push(newReply);
+			this.filteredContacts[this.activeIndex].messages.push(newReply);
 		},
 
 		lastMessageDate(contact) {
