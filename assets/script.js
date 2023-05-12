@@ -6,7 +6,7 @@ const app = Vue.createApp({
 			userAvatar: "img/avatar_stefano.jpg",
 			userName: "Stefano G.",
 			newMessage: "",
-			answerDelay: 3000,
+			answerDelay: 1500,
 			showMenu: null,
 			contacts: [
 				{
