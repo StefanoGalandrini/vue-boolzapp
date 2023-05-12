@@ -180,10 +180,13 @@ const app = Vue.createApp({
 	},
 
 	methods: {
-		chooseActiveContact(i) {
-			this.activeIndex = i;
+		// Sets activeIndex to the index of the selected contact
+		chooseActiveContact(index) {
+			this.activeIndex = index;
 		},
 
+		// Shallow-copy array "filteredContacts" kepps only
+		//the contacts whose name contains the string in "nameContains"
 		filterContacts() {
 			if (this.nameContains.trim() === "") {
 				this.filteredContacts = this.contacts;
@@ -196,10 +199,16 @@ const app = Vue.createApp({
 			}
 		},
 
+		// Real-time update of filteredContacts array
+		// when input value "nameContains" is modified
 		onChange() {
 			this.filterContacts();
 		},
 
+		// Adds a new message with class "sent" to filteredContacts.
+		// Original array "contacts" is also updated
+		// since filteredContacts is not deep-copied
+		// Luxon is a library used to easily format date and time
 		addMessage() {
 			const now = luxon.DateTime.now().toLocal("Europe");
 			const sentDate = now.toFormat("dd/MM/yyyy HH:mm:ss");
@@ -219,16 +228,19 @@ const app = Vue.createApp({
 			}
 		},
 
+		// Adds an automatic generated new message
+		// with class "received" to filteredContacts.
+		// Same as addMessage method above
 		addReply() {
 			const now = luxon.DateTime.now().toLocal("Europe");
 			const receivedDate = now.toFormat("dd/MM/yyyy HH:mm:ss");
 			const replies = [
-				"Ok!",
-				"Anche no...",
-				"Va bene",
-				"Perfetto!",
-				"Grazie!",
-				"A presto",
+				"Ok, ma solo per stavolta 😉",
+				"Grazie ma anche no 😈",
+				"L'esercizio era facilissimo... 🤥",
+				"Sembra che funzioni tutto ma non sarà così 😅",
+				"...poi uno resta sorpreso quando sente che altri usano chatGPT 😓",
+				"E alla fine scopri che ti sei scordato un centinaio di 'this' e hai scritto sempre 'lenght' col 'th' invertito 🙄",
 			];
 			const randomIndex = Math.floor(Math.random() * replies.length);
 			const randomReply = replies[randomIndex];
@@ -240,6 +252,8 @@ const app = Vue.createApp({
 			this.filteredContacts[this.activeIndex].messages.push(newReply);
 		},
 
+		// Finds the date of the last message
+		// and checks that it's "received" and not "sent"
 		lastMessageDate(contact) {
 			let i = contact.messages.length - 1;
 			if (contact.messages[i].status === "sent") {
@@ -250,6 +264,7 @@ const app = Vue.createApp({
 			}
 		},
 
+		// Same as above LastMessagedate, but for message text
 		lastMessageText(contact) {
 			let i = contact.messages.length - 1;
 			if (contact.messages[i].status === "sent") {
@@ -260,12 +275,16 @@ const app = Vue.createApp({
 			}
 		},
 
+		// On click on chevron down displays an hidden menu for each message
 		toggleShowMenu(index) {
 			this.showMenu === index
 				? (this.showMenu = null)
 				: (this.showMenu = index);
 		},
 
+		// Deletes the message from the array,
+		// prevents that the hidden menu shows up on the following message
+		// and updates text and date of contact last message to the previous one
 		deleteMessage(index) {
 			this.filteredContacts[this.activeIndex].messages.splice(index, 1);
 			this.toggleShowMenu(index);
@@ -274,6 +293,8 @@ const app = Vue.createApp({
 		},
 	},
 
+	// Creates a shollow copy of the array "contacts" to work with.
+	// Not sure why this is needed since they are actually the same array
 	computed: {
 		filteredContacts() {
 			if (this.nameContains.trim() === "") {
