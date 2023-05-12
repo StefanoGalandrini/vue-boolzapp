@@ -341,6 +341,7 @@ main .chat {
 
 .chat .bubble {
 	position: relative;
+	min-width: 0;
 }
 
 .chat .menu-icon {
@@ -381,6 +382,7 @@ main .chat {
 	height: min-content;
 	justify-self: end;
 	margin-bottom: 0.5rem;
+	overflow-wrap: break-word;
 }
 
 .received {
