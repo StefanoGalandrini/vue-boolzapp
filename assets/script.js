@@ -185,12 +185,13 @@ const app = Vue.createApp({
 			this.activeIndex = index;
 		},
 
-		// Shallow-copy array "filteredContacts" kepps only
+		// Shallow-copy array "filteredContacts" keeps only
 		//the contacts whose name contains the string in "nameContains"
 		filterContacts() {
 			if (this.nameContains.trim() === "") {
 				this.filteredContacts = this.contacts;
 			} else {
+				this.filteredContacts = this.contacts;
 				this.filteredContacts = this.contacts.filter((contact) =>
 					contact.name
 						.toLowerCase()
@@ -256,9 +257,13 @@ const app = Vue.createApp({
 		// and checks that it's "received" and not "sent"
 		lastMessageDate(contact) {
 			let i = contact.messages.length - 1;
-			if (contact.messages[i].status === "sent") {
+
+			while (contact.messages[i].status === "sent" && i > 0) {
 				i--;
-				return contact.messages[i].date;
+			}
+
+			if (contact.messages[i].status === "sent") {
+				return "--/--/--";
 			} else {
 				return contact.messages[i].date;
 			}
@@ -267,9 +272,13 @@ const app = Vue.createApp({
 		// Same as above LastMessagedate, but for message text
 		lastMessageText(contact) {
 			let i = contact.messages.length - 1;
-			if (contact.messages[i].status === "sent") {
+
+			while (contact.messages[i].status === "sent" && i > 0) {
 				i--;
-				return contact.messages[i].message;
+			}
+
+			if (contact.messages[i].status === "sent") {
+				return "- Nessun messaggio -";
 			} else {
 				return contact.messages[i].message;
 			}
@@ -289,7 +298,7 @@ const app = Vue.createApp({
 			this.filteredContacts[this.activeIndex].messages.splice(index, 1);
 			this.toggleShowMenu(index);
 			this.lastMessageText(this.filteredContacts[this.activeIndex]);
-			this.lastMessageDate(this.filteredContacts[this.activeIndex]);
+			// this.lastMessageDate(this.filteredContacts[this.activeIndex]);
 		},
 	},
 

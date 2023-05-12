@@ -60,7 +60,7 @@
 			<!-- 
 			Input to filter contacts and show in real time
 			only those whose name contains the input string.
-			Pretty sure that @keyup is unnecessary
+			Pretty sure that @keyup listener is unnecessary.
 			-->
 			<div class="search">
 				<div class="container">
@@ -94,26 +94,27 @@
 			Active contact details. 
 			Icons not working, so they are not inside an <a> tag
 			-->
-			<div class="chat-contact">
+			<div class="active-contact">
 				<div class="contact">
 					<div class="avatar">
 						<img :src="filteredContacts[activeIndex].avatar"
 							:alt="filteredContacts[activeIndex].name">
 					</div>
 					<div class="info">
-						<div class="userdata">
-							<div class="text">
-								<p class="name">{{filteredContacts[activeIndex].name}}</p>
-								<p class="date">Ultimo accesso:
-									{{lastMessageDate(filteredContacts[activeIndex])}}
-								</p>
-							</div>
-							<div class="icons">
-								<i class="fa-solid fa-magnifying-glass"></i>
-								<i class="fa-solid fa-paperclip"></i>
-								<i class="fa-solid fa-ellipsis-vertical"></i>
-							</div>
+
+						<div class="text">
+							<p class="name">{{filteredContacts[activeIndex].name}}</p>
+							<p class="date">Ultimo accesso:
+								{{lastMessageDate(filteredContacts[activeIndex])}}
+							</p>
 						</div>
+
+						<div class="icons">
+							<i class="fa-solid fa-magnifying-glass"></i>
+							<i class="fa-solid fa-paperclip"></i>
+							<i class="fa-solid fa-ellipsis-vertical"></i>
+						</div>
+
 					</div>
 				</div>
 			</div>
@@ -150,7 +151,7 @@
 			Section with an input field to write a message and send it.
 			Icons are not supposed to work so they are not inside an <a> tag.
 			-->
-			<div class="msg-input">
+			<div class="new-message-input">
 				<div class="container">
 					<div class="icon">
 						<i class="fa-regular fa-face-smile"></i>
