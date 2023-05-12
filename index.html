@@ -20,7 +20,10 @@
 
 <body>
 	<main>
+		<!-- Vue mount point -->
 		<div id="container">
+
+			<!-- User details. Icons not working, so they are not inside an <a> tag -->
 			<div class="user">
 				<div class="icon">
 					<div class="avatar">
@@ -36,6 +39,11 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- 
+			Notification section: only for display, 
+			nothing is actually supposed to work
+			-->
 			<div class="notification">
 				<div class="icon">
 					<div class="bell">
@@ -49,6 +57,11 @@
 				</div>
 			</div>
 
+			<!-- 
+			Input to filter contacts and show in real time
+			only those whose name contains the input string.
+			Pretty sure that @keyup is unnecessary
+			-->
 			<div class="search">
 				<div class="container">
 					<span class="icon">
@@ -60,6 +73,8 @@
 				</div>
 			</div>
 
+			<!-- Shows the contacts in the data array
+			based also on input search in the above section -->
 			<div class="contacts">
 				<div v-for="(contact, index) in filteredContacts" :key="contact.name"
 					class="contact" :class="{active: index === activeIndex}"
@@ -75,6 +90,10 @@
 				</div>
 			</div>
 
+			<!-- 
+			Active contact details. 
+			Icons not working, so they are not inside an <a> tag
+			-->
 			<div class="chat-contact">
 				<div class="contact">
 					<div class="avatar">
@@ -99,6 +118,14 @@
 				</div>
 			</div>
 
+			<!-- 
+			Chat display with sent and received messages from the selected contact.
+			Messages can be deleted using an hidden menu
+			that appears on click over the message chevron down.
+			Sent messages have the "sent" class dinamically added
+			and after an interval set in a Javascript variable, an automatic answer
+			is generated with the class "received" dinamicaly added. 
+			-->
 			<div class="chat">
 				<div v-for="(msg, index) in filteredContacts[activeIndex].messages"
 					:key="msg.message" class="conversation">
@@ -119,6 +146,10 @@
 				</div>
 			</div>
 
+			<!-- 
+			Section with an input field to write a message and send it.
+			Icons are not supposed to work so they are not inside an <a> tag.
+			-->
 			<div class="msg-input">
 				<div class="container">
 					<div class="icon">
