@@ -32,6 +32,7 @@ main {
 	border: 1px solid white;
 }
 
+/* sets CSS Grid colums and rows to place each element */
 main #container {
 	width: 100%;
 	height: 100%;
@@ -40,6 +41,13 @@ main #container {
 	grid-template-rows: 8vh 8vh 5.5vh auto 8vh;
 }
 
+/* 
+IMPORTANT: FOR EVERY SECTION THE MAIN STYLE COMES FIRST
+AND THEN FOLLOWS THE STYLE FOR EACH ELEMENT OF EVERY SECTION IN THE SAME ORDER  
+*/
+
+
+/* User info section base style and grid position */
 main .user {
 	background-color: #eaeaea;
 	grid-column: 1 / 2;
@@ -49,6 +57,70 @@ main .user {
 	border-inline-end: 2px solid var(--font-grey);
 }
 
+/* Notification section base style and grid position */
+main .notification {
+	background-color: #8fdbfd;
+	grid-column: 1 / 2;
+	grid-row: 2 / span 1;
+	display: flex;
+	align-items: center;
+	border-inline-end: 2px solid var(--font-grey);
+}
+
+/* Input filter section base style and grid position */
+main .search {
+	background-color: #eeeeee;
+	grid-column: 1 / 2;
+	grid-row: 3 / span 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-inline-end: 2px solid var(--font-grey);
+}
+
+/* List of contacts section base style and grid position */
+main .contacts {
+	width: 100%;
+	background-color: white;
+	grid-column: 1 / 2;
+	grid-row: 4 / -1;
+	overflow-y: scroll;
+	border-inline-end: 2px solid var(--font-grey);
+}
+
+/* Selected contact info section base style and grid position */
+main .active-contact {
+	background-color: #eaeaea;
+	grid-column: 2 / 3;
+	grid-row: 1 / span 1;
+	display: grid;
+	align-items: center;
+}
+
+
+/* Chat and messages section base style and grid position */
+main .chat {
+	background-image: url("../img/mine.jpg");
+	grid-column: 2 / 3;
+	grid-row: 2 / -2;
+	padding: 3rem 6rem;
+	overflow-y: auto;
+	border: 1px solid white;
+}
+
+/* New messages input section base style and grid position */
+main .msg-input {
+	background-color: #eaeaea;
+	grid-column: 2 / 3;
+	grid-row: -2 / -1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+/* User info styles */
 .user .icon {
 	display: flex;
 	flex-wrap: wrap;
@@ -97,15 +169,8 @@ main .user {
 	margin-left: 1.5rem;
 }
 
-main .notification {
-	background-color: #8fdbfd;
-	grid-column: 1 / 2;
-	grid-row: 2 / span 1;
-	display: flex;
-	align-items: center;
-	border-inline-end: 2px solid var(--font-grey);
-}
 
+/* Notification section styles */
 .notification .icon {
 	display: flex;
 	align-items: center;
@@ -148,16 +213,8 @@ main .notification {
 	color: var(--font-grey);
 }
 
-main .search {
-	background-color: #eeeeee;
-	grid-column: 1 / 2;
-	grid-row: 3 / span 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-inline-end: 2px solid var(--font-grey);
-}
 
+/* Filter input styles */
 .search .container {
 	width: 97%;
 	height: 100%;
@@ -182,20 +239,13 @@ main .search {
 	transform: translateY(-50%);
 }
 
-main .contacts {
-	width: 100%;
-	background-color: white;
-	grid-column: 1 / 2;
-	grid-row: 4 / -1;
-	overflow-y: scroll;
-	border-inline-end: 2px solid var(--font-grey);
+
+/* List of contacts styles */
+.contacts .active {
+	background-color: #e0d5d0;
 }
 
-main .contacts .active {
-	background-color: #d0d0d0;
-}
-
-main .contact {
+.contacts .contact {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-start;
@@ -207,25 +257,25 @@ main .contact {
 	transition: all 250ms;
 }
 
-main .contact:hover {
+.contacts .contact:hover {
 	background-color: #f0f0f0;
 }
 
-.contact img {
+.contacts img {
 	width: var(--avatar-dimension);
 	aspect-ratio: 1 / 1;
 	object-fit: cover;
 	border-radius: 50%;
 }
 
-.contact .info {
+.contacts .info {
 	min-width: 0;
 	width: calc(100% - var(--avatar-dimension) - 1rem);
 	display: flex;
 	flex-direction: column;
 }
 
-.contact .userdata {
+.contacts .userdata {
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
@@ -233,20 +283,20 @@ main .contact:hover {
 	align-items: center;
 }
 
-.contact .name {
+.contacts .name {
 	font-size: 1.15rem;
 	font-weight: 500;
 	color: var(--font-darkgrey);
 }
 
-.contact .date {
+.contacts .date {
 	font-size: 0.8rem;
 	font-weight: 300;
 	color: var(--font-grey);
 	white-space: nowrap;
 }
 
-.contact .text {
+.contacts .text {
 	margin-top: 0.2rem;
 	margin-right: 1.5rem;
 	font-size: 0.9rem;
@@ -257,15 +307,9 @@ main .contact:hover {
 	overflow: hidden;
 }
 
-main .chat-contact {
-	background-color: #eaeaea;
-	grid-column: 2 / 3;
-	grid-row: 1 / span 1;
-	display: grid;
-	align-items: center;
-}
 
-.chat-contact .contact {
+/* Selected contact info styles */
+.active-contact .contact {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-between;
@@ -274,66 +318,59 @@ main .chat-contact {
 	margin: 0;
 }
 
-.chat-contact .avatar {
+.active-contact .avatar {
 	width: var(--avatar-dimension);
 	height: var(--avatar-dimension);
 	border-radius: 50%;
 	overflow: hidden;
 }
 
-.chat-contact img {
+.active-contact img {
 	width: 100%;
 	aspect-ratio: 1 / 1;
 	object-fit: cover;
 	object-position: center center;
 }
 
-.chat-contact .info {
+.active-contact .info {
 	width: calc(100% - var(--avatar-dimension) - 1rem);
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-between;
 }
 
-.chat-contact .text {
+.active-contact .text {
 	min-width: 0;
 	width: 60%;
 }
 
-.chat-contact .name {
+.active-contact .name {
 	font-size: 1rem;
 	font-weight: 500;
 	color: var(--font-darkgrey);
 }
 
-.chat-contact .icons {
+.active-contact .icons {
 	font-size: 1.3rem;
 	font-weight: 300;
 	color: var(--font-grey);
 }
 
-.chat-contact i {
+.active-contact i {
 	width: 1rem;
 	text-align: center;
 	margin-left: 1.5rem;
 }
 
-.chat-contact .date {
+.active-contact .date {
 	font-size: 0.9rem;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
 }
 
-main .chat {
-	background-image: url("../img/mine.jpg");
-	grid-column: 2 / 3;
-	grid-row: 2 / -2;
-	padding: 3rem 6rem;
-	overflow-y: auto;
-	border: 1px solid white;
-}
 
+/* Chat and messages section styles */
 .chat .conversation {
 	display: grid;
 	align-content: start;
@@ -351,10 +388,11 @@ main .chat {
 }
 
 .chat .hidden-menu {
-	max-width: min-content;
+	min-width: 25ch;
 	white-space: nowrap;
 	list-style: none;
-	background-color: rgb(235, 200, 235);
+	background-color: rgb(90, 90, 90);
+	color: white;
 	border-radius: 10px;
 	position: absolute;
 	top: 25px;
@@ -372,10 +410,11 @@ main .chat {
 }
 
 .chat .menu-item:hover {
-	background-color: rgb(207, 154, 207);
+	background-color: rgb(180, 160, 150);
+	font-weight: 700;
 }
 
-.sent {
+.chat .sent {
 	max-width: 70%;
 	background-color: #d5f9bb;
 	border-radius: 10px;
@@ -385,7 +424,7 @@ main .chat {
 	overflow-wrap: break-word;
 }
 
-.received {
+.chat .received {
 	max-width: 70%;
 	background-color: #ffffff;
 	border-radius: 10px;
@@ -405,16 +444,9 @@ main .chat {
 	padding: 0 0.75rem 0.75rem 1rem;
 }
 
-main .msg-input {
-	background-color: #eaeaea;
-	grid-column: 2 / 3;
-	grid-row: -2 / -1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
 
-.msg-input .container {
+/* New messages input section styles */
+.new-message-input .container {
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -422,13 +454,13 @@ main .msg-input {
 	align-items: center;
 }
 
-.msg-input .icon {
+.new-message-input .icon {
 	font-size: 1.5rem;
 	color: var(--font-darkgrey);
 	padding-inline: 2.5rem;
 }
 
-.msg-input input {
+.new-message-input input {
 	width: 100%;
 	height: 80%;
 	padding-left: 40px;
