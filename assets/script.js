@@ -112,7 +112,7 @@ const app = Vue.createApp({
 				},
 				{
 					name: "Claudia",
-					avatar: "./img/avatar_5.jpg",
+					avatar: "./img/avatar_6.jpg",
 					visible: true,
 					messages: [
 						{
@@ -298,7 +298,6 @@ const app = Vue.createApp({
 			this.filteredContacts[this.activeIndex].messages.splice(index, 1);
 			this.toggleShowMenu(index);
 			this.lastMessageText(this.filteredContacts[this.activeIndex]);
-			// this.lastMessageDate(this.filteredContacts[this.activeIndex]);
 		},
 	},
 
