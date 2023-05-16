@@ -15,7 +15,7 @@
 		src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"
 		defer></script>
 	<script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
-	<script src="assets/script2.js" defer></script>
+	<script src="assets/script.js" defer></script>
 </head>
 
 <body>
@@ -76,7 +76,8 @@
 			based also on input search in the above section -->
 			<div class="contacts">
 				<div v-for="(contact, index) in filteredContacts" :key="contact.name"
-					class="contact" :class="{active: index === activeIndex}"
+					class="contact"
+					:class="{active: contact.name === contacts[activeIndex].name}"
 					@click="chooseActiveContact(contact)">
 					<img :src="contact.avatar" :alt="contact.name">
 					<div class="info">
@@ -94,7 +95,7 @@
 			Icons not working, so they are not inside an <a> tag
 			-->
 			<div class="active-contact">
-				<div class="contact">
+				<div v-if="showContact" class="contact">
 					<div class="avatar">
 						<img :src="contacts[activeIndex].avatar"
 							:alt="contacts[activeIndex].name">
@@ -127,7 +128,8 @@
 			is generated with the class "received" dinamicaly added. 
 			-->
 			<div class="chat">
-				<div v-for="(msg, index) in contacts[activeIndex].messages"
+				<div v-if="showContact"
+					v-for="(msg, index) in contacts[activeIndex].messages"
 					:key="msg.message" class="conversation">
 					<div class="bubble" :class="msg.status">
 						<p>{{msg.message}}</p>
@@ -151,7 +153,7 @@
 			Icons are not supposed to work so they are not inside an <a> tag.
 			-->
 			<div class="new-message-input">
-				<div class="container">
+				<div v-if="showContact" class="container">
 					<div class="icon">
 						<i class="fa-regular fa-face-smile"></i>
 					</div>

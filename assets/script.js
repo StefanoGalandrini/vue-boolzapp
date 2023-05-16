@@ -8,6 +8,7 @@ const app = Vue.createApp({
 			newMessage: "",
 			answerDelay: 1500,
 			showMenu: null,
+			showContact: true,
 			contacts: [
 				{
 					name: "Michele",
@@ -183,45 +184,10 @@ const app = Vue.createApp({
 		// Sets activeIndex to the index of the selected contact
 		chooseActiveContact(contact) {
 			this.activeIndex = this.contacts.indexOf(contact);
+			console.log(this.activeIndex);
 		},
 
-		// Shallow-copy array "filteredContacts" keeps only
-		//the contacts whose name contains the string in "nameContains"
-		filterContacts() {
-			if (this.nameContains.trim() === "") {
-				this.filteredContacts = this.contacts;
-			} else {
-				this.filteredContacts = this.contacts;
-				return (this.filteredContacts = this.contacts.filter(
-					(contact) =>
-						contact.name
-							.toLowerCase()
-							.includes(this.nameContains.toLowerCase()),
-				));
-			}
-		},
-
-		// Real-time update of filteredContacts array
-		// when input value "nameContains" is modified
-		onChange() {
-			this.filterContacts();
-		},
-
-		filterContacts() {
-			if (this.nameContains.trim() === "") {
-				this.filteredContacts = this.contacts;
-			} else {
-				this.filteredContacts = this.contacts.filter((contact) =>
-					contact.name
-						.toLowerCase()
-						.includes(this.nameContains.toLowerCase()),
-				);
-			}
-		},
-
-		// Adds a new message with class "sent" to filteredContacts.
-		// Original array "contacts" is also updated
-		// since filteredContacts is not deep-copied
+		// Adds a new message with class "sent" to contacts.
 		// Luxon is a library used to easily format date and time
 		addMessage() {
 			const index = this.activeIndex;
@@ -233,7 +199,7 @@ const app = Vue.createApp({
 					message: this.newMessage,
 					status: "sent",
 				};
-				this.filteredContacts[index].messages.push(newMessage);
+				this.contacts[index].messages.push(newMessage);
 				this.newMessage = "";
 				setTimeout(() => {
 					this.addReply(index);
@@ -242,8 +208,7 @@ const app = Vue.createApp({
 		},
 
 		// Adds an automatic generated new message
-		// with class "received" to filteredContacts.
-		// Same as addMessage method above
+		// with class "received" to contacts.
 		addReply(index) {
 			const now = luxon.DateTime.now().toLocal("Europe");
 			const receivedDate = now.toFormat("dd/MM/yyyy HH:mm:ss");
@@ -262,7 +227,7 @@ const app = Vue.createApp({
 				message: randomReply,
 				status: "received",
 			};
-			this.filteredContacts[index].messages.push(newReply);
+			this.contacts[index].messages.push(newReply);
 		},
 
 		// Finds the date of the last message
@@ -307,33 +272,39 @@ const app = Vue.createApp({
 		// prevents that the hidden menu shows up on the following message
 		// and updates text and date of contact last message to the previous one
 		deleteMessage(index) {
-			this.filteredContacts[this.activeIndex].messages.splice(index, 1);
+			this.contacts[this.activeIndex].messages.splice(index, 1);
 			this.toggleShowMenu(index);
-			this.lastMessageText(this.filteredContacts[this.activeIndex]);
+			this.lastMessageText(this.contacts[this.activeIndex]);
+		},
+
+		// on input search, changes displayed contacts, chats and message input
+		onChange() {
+			const obj = this.filteredContacts[0];
+			const index = this.contacts.indexOf(obj);
+
+			if (index >= 0) {
+				this.activeIndex = index;
+				console.log("IF", this.activeIndex);
+				this.showContact = true;
+				return this.activeIndex;
+			} else {
+				this.activeIndex = 0;
+				this.showContact = false;
+				this.filteredContacts.splice(0, this.filteredContacts.length);
+			}
 		},
 	},
 
 	// Creates a shollow copy of the array "contacts" to work with.
-	// Not sure why this is needed since they are actually the same array
 	computed: {
-		// filteredContacts() {
-		// 	if (this.nameContains.trim() === "") {
-		// 		return this.contacts;
-		// 	} else {
-		// 		return this.contacts.filter((contact) =>
-		// 			contact.name
-		// 				.toLowerCase()
-		// 				.includes(this.nameContains.toLowerCase()),
-		// 		);
-		// 	}
-		// },
-
 		filteredContacts() {
-			if (this.nameContains.trim() === "") {
+			if (this.nameContains.toLowerCase().trim() === "") {
 				return this.contacts;
 			} else {
 				return this.contacts.filter((contact) =>
-					contact.name.includes(this.nameContains),
+					contact.name
+						.toLowerCase()
+						.includes(this.nameContains.toLowerCase()),
 				);
 			}
 		},
