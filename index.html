@@ -15,7 +15,7 @@
 		src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"
 		defer></script>
 	<script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
-	<script src="assets/script.js" defer></script>
+	<script src="assets/script2.js" defer></script>
 </head>
 
 <body>
@@ -68,7 +68,6 @@
 						<i class="fa-solid fa-magnifying-glass"></i>
 					</span>
 					<input type="text" v-model="nameContains"
-						@keyup.enter="filterContacts" @input="onChange"
 						placeholder="Cerca o inizia una nuova chat">
 				</div>
 			</div>
@@ -97,15 +96,15 @@
 			<div class="active-contact">
 				<div class="contact">
 					<div class="avatar">
-						<img :src="filteredContacts[activeIndex].avatar"
-							:alt="filteredContacts[activeIndex].name">
+						<img :src="contacts[activeIndex].avatar"
+							:alt="contacts[activeIndex].name">
 					</div>
 					<div class="info">
 
 						<div class="text">
-							<p class="name">{{filteredContacts[activeIndex].name}}</p>
+							<p class="name">{{contacts[activeIndex].name}}</p>
 							<p class="date">Ultimo accesso:
-								{{lastMessageDate(filteredContacts[activeIndex])}}
+								{{lastMessageDate(contacts[activeIndex])}}
 							</p>
 						</div>
 
@@ -128,7 +127,7 @@
 			is generated with the class "received" dinamicaly added. 
 			-->
 			<div class="chat">
-				<div v-for="(msg, index) in filteredContacts[activeIndex].messages"
+				<div v-for="(msg, index) in contacts[activeIndex].messages"
 					:key="msg.message" class="conversation">
 					<div class="bubble" :class="msg.status">
 						<p>{{msg.message}}</p>
