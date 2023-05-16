@@ -203,6 +203,7 @@ const app = Vue.createApp({
 		// Real-time update of filteredContacts array
 		// when input value "nameContains" is modified
 		onChange() {
+			console.log(this.nameContains);
 			this.filterContacts();
 		},
 
@@ -211,6 +212,7 @@ const app = Vue.createApp({
 		// since filteredContacts is not deep-copied
 		// Luxon is a library used to easily format date and time
 		addMessage() {
+			const index = this.activeIndex;
 			const now = luxon.DateTime.now().toLocal("Europe");
 			const sentDate = now.toFormat("dd/MM/yyyy HH:mm:ss");
 			if (this.newMessage.trim() !== "") {
@@ -219,12 +221,10 @@ const app = Vue.createApp({
 					message: this.newMessage,
 					status: "sent",
 				};
-				this.filteredContacts[this.activeIndex].messages.push(
-					newMessage,
-				);
+				this.filteredContacts[index].messages.push(newMessage);
 				this.newMessage = "";
 				setTimeout(() => {
-					this.addReply();
+					this.addReply(index);
 				}, this.answerDelay);
 			}
 		},
@@ -232,7 +232,7 @@ const app = Vue.createApp({
 		// Adds an automatic generated new message
 		// with class "received" to filteredContacts.
 		// Same as addMessage method above
-		addReply() {
+		addReply(index) {
 			const now = luxon.DateTime.now().toLocal("Europe");
 			const receivedDate = now.toFormat("dd/MM/yyyy HH:mm:ss");
 			const replies = [
@@ -250,7 +250,7 @@ const app = Vue.createApp({
 				message: randomReply,
 				status: "received",
 			};
-			this.filteredContacts[this.activeIndex].messages.push(newReply);
+			this.filteredContacts[index].messages.push(newReply);
 		},
 
 		// Finds the date of the last message
