@@ -207,6 +207,18 @@ const app = Vue.createApp({
 			this.filterContacts();
 		},
 
+		filterContacts() {
+			if (this.nameContains.trim() === "") {
+				this.filteredContacts = this.contacts;
+			} else {
+				this.filteredContacts = this.contacts.filter((contact) =>
+					contact.name
+						.toLowerCase()
+						.includes(this.nameContains.toLowerCase()),
+				);
+			}
+		},
+
 		// Adds a new message with class "sent" to filteredContacts.
 		// Original array "contacts" is also updated
 		// since filteredContacts is not deep-copied

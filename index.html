@@ -67,7 +67,7 @@
 					<span class="icon">
 						<i class="fa-solid fa-magnifying-glass"></i>
 					</span>
-					<input type="text" v-model="nameContains"
+					<input type="text" v-model="nameContains" @input="onChange"
 						placeholder="Cerca o inizia una nuova chat">
 				</div>
 			</div>
@@ -77,7 +77,7 @@
 			<div class="contacts">
 				<div v-for="(contact, index) in filteredContacts" :key="contact.name"
 					class="contact" :class="{active: index === activeIndex}"
-					@click="chooseActiveContact(index)">
+					@click="chooseActiveContact(contact)">
 					<img :src="contact.avatar" :alt="contact.name">
 					<div class="info">
 						<div class="userdata">
